@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="col-8 d-flex mx-auto mt-5">
+      <div class="input-group mb-3 ">
+        <span class="input-group-text" id="inputGroup-sizing-default">Search for city</span>
+        <input type="text" class="form-control" id="search-input">
+      </div>
+    </div>
+
+
+    <div class="col-8 d-flex mx-auto mt-3">
+      <table class="table border-2">
+        <thead>
+          <tr>
+            <th class="col-md-7">City</th>
+            <th class="col-md-4">Average Temp</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+
+  <script type="module" src="/javascripts/getPlaces.js"></script>
+</body>
+
+</html>
