@@ -2,7 +2,7 @@ const searchInput = document.querySelector('#search-input')
 const tableBody = document.querySelector('#table-body')
 
 
-function createCityName(valueCity) {
+function createCityName(valueCity, atributeCode) {
     const createTr = document.createElement('tr');
     const createTd = document.createElement('td');
     const createTdButton = document.createElement('td');
@@ -10,9 +10,12 @@ function createCityName(valueCity) {
 
     createButton.setAttribute('type', 'button');
     createButton.classList.add('btn', 'btn-secondary', 'btn-sm');
+    createButton.innerText = 'Show Data';
+
 
     createTd.textContent = valueCity;
-    createButton.innerText = 'Show Data';
+    createTd.setAttribute('cityCode', atributeCode);
+
 
 
     createTr.appendChild(createTd);
@@ -58,7 +61,7 @@ let getPlaces = async () => {
                 if (event.inputType) {
                     cityNames.forEach(element => {
                         if (!(/\s/).test(element.name)) {
-                            createCityName(element.name);
+                            createCityName(element.name, element.code);
                         }
                     });
                 }
