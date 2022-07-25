@@ -2,6 +2,23 @@ const searchInput = document.querySelector('#search-input')
 const tableBody = document.querySelector('#table-body')
 
 
+async function getAvgTemp(event) {
+    const getSiblingTdAtributeName = event.target.parentNode.parentNode.firstChild.getAttribute('cityCode');
+    const getEventTr =  event.target.parentNode;
+    let getTemp = await fetch(`/api/v1/weather/places/find/${getSiblingTdAtributeName}/forecasts`);
+    let getTempJSON = await getTemp.json();
+    let getTempJSONLenght = getTempJSON.length;
+    let avgTemp = 0;
+
+    for (const getweather of getTempJSON) {
+        avgTemp = avgTemp + getweather.airTemperature
+    }
+
+    event.target.remove();
+    getEventTr.innerText = `${(avgTemp/getTempJSONLenght).toFixed(1)}°C `;
+
+}
+
 function createCityName(valueCity, atributeCode) {
     const createTr = document.createElement('tr');
     const createTd = document.createElement('td');
@@ -16,14 +33,15 @@ function createCityName(valueCity, atributeCode) {
     createTd.textContent = valueCity;
     createTd.setAttribute('cityCode', atributeCode);
 
-
+    createButton.addEventListener('click', (event) => {
+        getAvgTemp(event);
+    })
 
     createTr.appendChild(createTd);
     tableBody.appendChild(createTr);
     createTdButton.appendChild(createButton);
     createTr.appendChild(createTdButton);
 }
-
 
 
 function debounce(func, timeout = 300) {
@@ -52,7 +70,6 @@ let getPlaces = async () => {
             });
 
             let getPlaces = await fetch(`/api/v1/weather/places/find/${searchInput.value}`)
-            // let getTemp = await fetch(`/api/v1/weather/places/find/${searchInput.value}/forecasts`)
 
             if (!getPlaces.ok) {
                 throw new Error(getPlaces.statusText);
