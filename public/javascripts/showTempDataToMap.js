@@ -45,7 +45,7 @@ async function getAvgTemp(cityCode, numberOfDate) {
 
 }
 
-deleteButton?.addEventListener('click', ()=>{
+deleteButton?.addEventListener('click', () => {
     const getTrInTbody = document.querySelectorAll('tbody > tr');
 
     getTrInTbody.forEach(element => {
@@ -90,7 +90,9 @@ map.forEach(async element => {
             getTbody.appendChild(createTr);
 
 
-            deleteButton.classList.remove('d-none');
+            if(deleteButton.classList.contains('d-none')){
+                deleteButton.classList.remove('d-none');
+            }
         }
     })
 
