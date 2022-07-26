@@ -51,6 +51,8 @@ deleteButton?.addEventListener('click', ()=>{
     getTrInTbody.forEach(element => {
         element.remove()
     });
+
+    deleteButton.classList.add('d-none');
 })
 
 map.forEach(async element => {
