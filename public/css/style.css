@@ -10762,4 +10762,40 @@ textarea.form-control-lg {
   border: none;
 }
 
+#appContainer {
+  position: relative;
+}
+
+#imgMap {
+  max-height: 100%;
+}
+
+#kaunasId {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#kaunasTemp {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#vilniusId {
+  position: absolute;
+  top: 60%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+}
+
+#vilniusTemp {
+  position: absolute;
+  top: 65%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+}
+
 /*# sourceMappingURL=style.css.map */

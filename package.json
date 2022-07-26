@@ -1,6 +1,9 @@
 {
   "name": "weatherappexpress",
   "version": "0.0.0",
+  "author": "Saint_luc",
+  "email": "sain@saint.com",
+  "license": "ISC",
   "private": true,
   "scripts": {
     "start:prod": "node ./bin/www",

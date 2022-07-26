@@ -2,15 +2,26 @@ const searchInput = document.querySelector('#search-input')
 const tableBody = document.querySelector('#table-body')
 
 
+function todayDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    return today
+}
+
 async function getAvgTemp(event) {
     const getSiblingTdAtributeName = event.target.parentNode.parentNode.firstChild.getAttribute('cityCode');
     const getEventTr =  event.target.parentNode;
-    let getTemp = await fetch(`/api/v1/weather/places/find/${getSiblingTdAtributeName}/forecasts`);
-    let getTempJSON = await getTemp.json();
-    let getTempJSONLenght = getTempJSON.length;
+    const getTemp = await fetch(`/api/v1/weather/places/find/${getSiblingTdAtributeName}/forecasts`);
+    const getTempJSON = await getTemp.json();
+    const getTempToday = await getTempJSON.filter(p => p.forecastTimeUtc.startsWith(todayDate()));
+    const getTempJSONLenght = getTempToday.length;
     let avgTemp = 0;
 
-    for (const getweather of getTempJSON) {
+    for (const getweather of getTempToday) {
         avgTemp = avgTemp + getweather.airTemperature
     }
 

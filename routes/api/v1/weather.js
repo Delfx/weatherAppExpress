@@ -18,8 +18,7 @@ router.get('/places/find/:name/forecasts/', async function (req, res, next) {
     try {
         todayDate();
         const getAllPlaces = (await axios.get(`https://api.meteo.lt/v1/places/${req.params.name}/forecasts/long-term`)).data.forecastTimestamps;
-        const filterPlace = getAllPlaces.filter(p => p.forecastTimeUtc.startsWith(todayDate()));
-        res.json(filterPlace);
+        res.json(getAllPlaces);
     } catch (error) {
         res.render('error', { err: error });
         console.error(error);
