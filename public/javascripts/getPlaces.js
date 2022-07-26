@@ -74,7 +74,6 @@ let getPlaces = async () => {
     try {
         searchInput.addEventListener('input', debounce(async function (event) {
 
-
             const allTr = document.querySelectorAll('tbody > tr')
             allTr.forEach(tr => {
                 tr.remove();

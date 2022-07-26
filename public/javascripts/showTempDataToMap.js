@@ -1,6 +1,7 @@
 const map = document.querySelectorAll('[data-city]');
 const kaunasTemp = document.querySelector('#kaunasTemp');
 const getTbody = document.querySelector('tbody');
+const deleteButton = document.querySelector('#delete-button')
 
 function todayDate(numberOfDate) {
     let today = new Date();
@@ -44,6 +45,14 @@ async function getAvgTemp(cityCode, numberOfDate) {
 
 }
 
+deleteButton?.addEventListener('click', ()=>{
+    const getTrInTbody = document.querySelectorAll('tbody > tr');
+
+    getTrInTbody.forEach(element => {
+        element.remove()
+    });
+})
+
 map.forEach(async element => {
     let numberOfDate = 1;
     const getCityAvgTemp = await getAvgTemp(element.getAttribute('data-city'), numberOfDate);
@@ -56,7 +65,7 @@ map.forEach(async element => {
 
         for (let numberOfDate = 1; numberOfDate < getCityAvgTemp.dateLength; numberOfDate++) {
 
-        const getCityAvgDataClickedOnManp = await getAvgTemp(element.getAttribute('data-city'), numberOfDate);
+            const getCityAvgDataClickedOnManp = await getAvgTemp(element.getAttribute('data-city'), numberOfDate);
 
             const createTr = document.createElement('tr');
             const createTdCity = document.createElement('td');
@@ -78,12 +87,10 @@ map.forEach(async element => {
             createTr.appendChild(createTdWindSpeed);
             getTbody.appendChild(createTr);
 
+
+            deleteButton.classList.remove('d-none');
         }
-
     })
-
-
-    // console.log(await getCityAvgTemp);
 
 });
 
